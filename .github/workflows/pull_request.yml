@@ -20,5 +20,9 @@ jobs:
           java-version: '17'
           cache: maven
 
+      - name: Install Playwright dependencies
+        run: |
+          mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install-deps"
+
       - name: Run Maven tests
         run: mvn -B clean test
