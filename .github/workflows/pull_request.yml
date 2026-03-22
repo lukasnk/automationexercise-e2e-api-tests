@@ -22,7 +22,7 @@ jobs:
 
       - name: Install Playwright dependencies
         run: |
-          mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install-deps"
+          mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install  --with-deps"
 
       - name: Run Maven tests
-        run: mvn -B clean test
+        run: mvn -B clean test -Dheadless=true
