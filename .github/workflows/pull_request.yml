@@ -1,9 +1,9 @@
 name: PR UI
 
 on:
-  push:
+  pull_request:
     branches:
-      - add-CI-PR
+      - master
 
 jobs:
   ui-tests:
