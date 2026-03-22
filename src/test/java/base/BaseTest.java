@@ -15,8 +15,13 @@ public class BaseTest {
     @BeforeAll
     static void globalSetup() {
         playwright = Playwright.create();
+
+        boolean headless = Boolean.parseBoolean(
+                System.getProperty("headless", "true")
+        );
+
         browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions().setHeadless(false)
+                new BrowserType.LaunchOptions().setHeadless(headless)
         );
     }
 
