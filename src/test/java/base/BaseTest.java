@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class BaseTest {
     protected static Playwright playwright;
@@ -15,6 +16,14 @@ public class BaseTest {
 
     @BeforeAll
     static void globalSetup() {
+        Dotenv dotenv = Dotenv.configure()
+                .ignoreIfMissing()
+                .load();
+        dotenv.entries().forEach(entry -> {
+            if (System.getProperty(entry.getKey()) == null && System.getenv(entry.getKey()) == null) {
+                System.setProperty(entry.getKey(), entry.getValue());
+            }
+        });
         playwright = Playwright.create();
 
         boolean headless = Boolean.parseBoolean(
