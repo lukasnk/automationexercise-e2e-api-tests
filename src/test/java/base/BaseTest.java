@@ -1,11 +1,12 @@
 package base;
 
 import com.microsoft.playwright.*;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import io.github.cdimascio.dotenv.Dotenv;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 public class BaseTest {
     protected static Playwright playwright;
@@ -13,6 +14,8 @@ public class BaseTest {
     protected BrowserContext context;
     protected Page page;
     protected String baseUrl;
+    @RegisterExtension
+    final FailureArtifactsExtension failureArtifacts = new FailureArtifactsExtension();
 
     @BeforeAll
     static void globalSetup() {
@@ -57,5 +60,9 @@ public class BaseTest {
         if (context != null) {
             context.close();
         }
+    }
+
+    protected Page getPage() {
+        return page;
     }
 }

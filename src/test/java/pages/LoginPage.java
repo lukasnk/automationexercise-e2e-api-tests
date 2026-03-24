@@ -9,7 +9,6 @@ public class LoginPage {
     private static final String LOGIN_EMAIL = "input[data-qa='login-email']";
     private static final String LOGIN_PASSWORD = "input[data-qa='login-password']";
     private static final String LOGIN_BUTTON = "button[data-qa='login-button']";
-    private static final String LOGOUT_LINK = "a[href='/logout']";
     private static final String LOGIN_ERROR = "p:has-text('Your email or password is incorrect!')";
     private static final String SIGNUP_NAME = "input[data-qa='signup-name']";
     private static final String SIGNUP_EMAIL = "input[data-qa='signup-email']";
@@ -26,10 +25,6 @@ public class LoginPage {
         page.locator(LOGIN_BUTTON).click();
     }
 
-    public Locator logoutLink() {
-        return page.locator(LOGOUT_LINK);
-    }
-
     public Locator loginError() {
         return page.locator(LOGIN_ERROR);
     }
@@ -40,7 +35,7 @@ public class LoginPage {
         page.locator(SIGNUP_BUTTON).click();
     }
 
-    public boolean isSignupEmailExistsErrorVisible(long timeoutMs) {
+    public boolean isSignupEmailExistsErrorVisible(int timeoutMs) {
         Locator error = page.locator(SIGNUP_EMAIL_EXISTS_ERROR).first();
         try {
             error.waitFor(new Locator.WaitForOptions().setTimeout(timeoutMs));

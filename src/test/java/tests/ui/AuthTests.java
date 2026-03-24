@@ -44,8 +44,7 @@ public class AuthTests extends BaseTest {
         registeredEmail = email;
 
         if (created) {
-            LoginPage loginPage = new LoginPage(page);
-            assertThat(loginPage.logoutLink()).isVisible();
+            assertThat(page).hasURL(baseUrl);
         }
     }
 
@@ -69,7 +68,7 @@ public class AuthTests extends BaseTest {
         LoginPage loginPage = new LoginPage(page);
         loginPage.login(registeredEmail, password);
 
-        assertThat(loginPage.logoutLink()).isVisible();
+        assertThat(page).hasURL(baseUrl);
     }
 
     @Test
