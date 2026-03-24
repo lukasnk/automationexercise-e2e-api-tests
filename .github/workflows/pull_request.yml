@@ -3,11 +3,14 @@ name: PR UI
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   ui-tests:
     runs-on: ubuntu-22.04
+    env:
+      LOGIN_EMAIL: ${{ secrets.LOGIN_EMAIL }}
+      LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
 
     steps:
       - name: Checkout repository
