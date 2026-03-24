@@ -11,6 +11,7 @@ public class BaseTest {
     protected static Browser browser;
     protected BrowserContext context;
     protected Page page;
+    protected String baseUrl;
 
     @BeforeAll
     static void globalSetup() {
@@ -29,6 +30,7 @@ public class BaseTest {
     void setup() {
         context = browser.newContext();
         page = context.newPage();
+        baseUrl = System.getProperty("baseUrl", "https://automationexercise.com/");
     }
 
     @AfterAll

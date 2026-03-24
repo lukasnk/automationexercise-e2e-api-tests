@@ -1,9 +1,10 @@
 package tests.ui;
 
 import base.BaseTest;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pages.HomePage;
+
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
 public class HomePageTest extends BaseTest {
 
@@ -11,21 +12,11 @@ public class HomePageTest extends BaseTest {
     void shouldOpenHomePageSuccessfully() {
         HomePage homePage = new HomePage(page);
 
-        homePage.open();
+        homePage.open(baseUrl);
 
-        Assertions.assertTrue(
-                homePage.getTitle().contains("Automation Exercise"),
-                "Page title should contain 'Automation Exercise'"
-        );
+        assertThat(page).hasTitle("Automation Exercise");
 
-        Assertions.assertTrue(
-                homePage.isLogoVisible(),
-                "Logo should be visible"
-        );
-
-        Assertions.assertTrue(
-                homePage.isSignupLoginButtonVisible(),
-                "Signup/Login button should be visible"
-        );
+        assertThat(homePage.logo()).isVisible();
+        assertThat(homePage.signupLoginButton()).isVisible();
     }
 }
