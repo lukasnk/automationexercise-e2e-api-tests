@@ -42,13 +42,10 @@ Artifacts are written to:
 target/artifacts/<ClassName>_<methodName>/
 ```
 
-## CI
-
-Półautomat: workflow **PR UI** (job `ui-tests`) na każdy pull request do `main`.
-Merge tylko przez PR. Kod testów zostaje w tym repo.
-
-GitHub Actions secrets:
+## CI secrets
+Set GitHub Actions secrets:
 - `LOGIN_EMAIL`
 - `LOGIN_PASSWORD`
 
-Po failu CI wrzuca `target/artifacts/` i `target/surefire-reports/` jako artifact (7 dni).
+CI runs UI tests on pull requests to `main`.
+On failure, artifacts are uploaded from `target/artifacts/` and `target/surefire-reports/`.
