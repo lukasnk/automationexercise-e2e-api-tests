@@ -46,3 +46,7 @@ target/artifacts/<ClassName>_<methodName>/
 Set GitHub Actions secrets:
 - `LOGIN_EMAIL`
 - `LOGIN_PASSWORD`
+
+CI runs UI tests on pull requests to `main`, on push to `main`, and on a nightly schedule.
+On failure, artifacts are uploaded from `target/artifacts/` and `target/surefire-reports/`.
+
